@@ -1,0 +1,16 @@
+# Dependencies and build output
+node_modules/
+dist/
+coverage/
+
+# Environment files contain machine-specific settings and secrets
+.env
+.env.local
+.env.*.local
+server/.env
+client/.env
+
+# Logs and editor files
+*.log
+.DS_Store
+.vscode/

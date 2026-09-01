@@ -1,0 +1,9 @@
+packages:
+  - client
+  - server
+
+# Vite requires esbuild's platform binary during the React production build.
+# Keeping this explicit preserves pnpm's secure default of blocking all other
+# third-party install scripts unless the team approves them intentionally.
+allowBuilds:
+  esbuild: true

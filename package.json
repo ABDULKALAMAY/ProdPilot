@@ -1,0 +1,17 @@
+{
+  "name": "prodpilot",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@11.19.0",
+  "description": "A beginner-friendly Agile and DevOps productivity application.",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "pnpm --parallel --filter prodpilot-server --filter prodpilot-client run dev",
+    "build": "pnpm --filter prodpilot-client run build",
+    "test": "pnpm --filter prodpilot-server run test",
+    "start": "pnpm --filter prodpilot-server run start"
+  }
+}

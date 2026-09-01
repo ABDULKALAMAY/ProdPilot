@@ -1,0 +1,38 @@
+name: Deploy to EC2
+
+# This workflow becomes the CD half of the project after repository secrets
+# and the EC2 setup described in docs/DEPLOYMENT.md are complete.
+on:
+  workflow_run:
+    workflows: ["Continuous Integration"]
+    branches: [main]
+    types: [completed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prodpilot-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy verified main branch
+    # Never deploy if CI failed. Repository secrets are required before this job
+    # can connect to EC2.
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy the application over SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script_stop: true
+          script: |
+            cd /opt/prodpilot
+            git fetch origin main
+            git checkout main
+            git pull --ff-only origin main
+            docker compose up -d --build
