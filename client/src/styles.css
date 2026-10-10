@@ -98,3 +98,29 @@ body { background:var(--canvas); }
 .auth-footer a { color:var(--green-dark); }
 
 @media (max-width:800px) { .sidebar .brand-logo { width:38px; height:38px; } }
+
+/* Project planning reuses the task forms, cards, buttons and theme. */
+.projects-page { max-width:1500px; }
+.project-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+.project-card { overflow-wrap:anywhere; }.project-card:hover { border-color:var(--green-dark); }
+.back-link { display:inline-block; margin-top:12px; color:var(--green-dark); font-size:13px; font-weight:700; }
+.project-toolbar { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+.section-heading .project-toolbar { margin:0; }.projects-page .section-heading { gap:16px; flex-wrap:wrap; }
+.project-note { margin-bottom:16px; }.project-tabs { max-width:100%; flex-wrap:wrap; }
+.table-scroll,.network-scroll { overflow:auto; max-width:100%; }
+.project-table { width:100%; border-collapse:collapse; font-size:13px; text-align:left; }
+.project-table caption { padding:18px 0 8px; text-align:left; font-weight:700; }
+.project-table th,.project-table td { padding:13px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+.project-table th { font-weight:600; }.project-table small { display:block; color:var(--muted); font-weight:400; margin-top:4px; max-width:280px; overflow-wrap:anywhere; }
+.project-table thead { color:var(--muted); }.critical-row { background:var(--green-pale); }
+.network-scroll { margin:18px 0; border:1px solid var(--line); border-radius:12px; background:var(--canvas); }
+.network-scroll svg { display:block; }.network-edge { fill:none; stroke:#63758b; stroke-width:2; stroke-linejoin:round; }.network-edge.critical { stroke:var(--green-dark); stroke-width:3; }
+.network-node rect { fill:white; stroke:#bdc9b5; stroke-width:1.5; }.network-node.critical rect { fill:var(--green-pale); stroke:var(--green-dark); stroke-width:2.5; }
+.network-node text { fill:var(--ink); font-size:12px; }.network-node .node-title { font-size:13px; font-weight:700; }
+.network-terminal { fill:var(--black-soft); }.terminal-label { fill:white; font-weight:700; font-size:18px; }
+.critical-paths { margin-bottom:18px; }.critical-paths summary { cursor:pointer; font-weight:700; }.critical-paths p { font-size:13px; margin:10px 0; overflow-wrap:anywhere; }
+.assignment-preview { padding:18px; margin:18px 0; border-radius:10px; border:1px solid var(--line); background:var(--green-pale); }
+.suggestion-row { display:flex; gap:16px; justify-content:space-between; align-items:center; margin:14px 0; font-size:13px; }
+.suggestion-row small { display:block; margin-top:4px; color:var(--muted); }.suggestion-row select { max-width:45%; padding:8px; border:1px solid var(--line); border-radius:8px; }
+.team-import { margin:20px 0; padding:15px; background:var(--canvas); border-radius:10px; }.team-import input { display:block; margin:10px 0; max-width:100%; }.team-import code { display:block; overflow-wrap:anywhere; font-size:12px; margin-top:10px; }
+@media(max-width:530px) { .sidebar { padding:10px; }.sidebar .brand { font-size:16px; gap:5px; }.sidebar .brand-logo { width:28px; height:28px; }.sidebar .nav-link { padding:8px 6px; font-size:11px; }.project-tabs button { font-size:12px; }.suggestion-row { flex-direction:column; align-items:stretch; }.suggestion-row select { max-width:100%; } }

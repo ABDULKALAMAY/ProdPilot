@@ -5,7 +5,7 @@ This guide deploys the Dockerized app on one Ubuntu EC2 instance. It is designed
 ## 1. Prepare the EC2 instance
 
 1. Launch an Ubuntu 24.04 EC2 instance (a small instance is enough for a demo).
-2. In its security group, allow inbound `22` (SSH) only from your IP, plus `8080` and `5000` for the basic demo. For a public site, use `80`/`443` instead of exposing these app ports.
+2. In its security group, allow inbound `22` (SSH) only from your IP, plus `8040` and `5000` for the basic demo. For a public site, use `80`/`443` instead of exposing these app ports.
 3. Connect using SSH:
 
 ```bash
@@ -45,7 +45,7 @@ For an EC2 deployment, edit `docker-compose.yml` so the client build argument us
 VITE_API_URL: http://YOUR_EC2_PUBLIC_IP:5000
 ```
 
-Also set `CLIENT_ORIGIN` for the server to `http://YOUR_EC2_PUBLIC_IP:8080`. These values are needed because the browser must be allowed to call the API.
+Also set `CLIENT_ORIGIN` for the server to `http://YOUR_EC2_PUBLIC_IP:8040`. These values are needed because the browser must be allowed to call the API.
 
 ## 4. Start the stack
 
@@ -55,7 +55,7 @@ docker compose ps
 curl http://localhost:5000/api/health
 ```
 
-Open `http://YOUR_EC2_PUBLIC_IP:8080`, register an account, and try the full task workflow.
+Open `http://YOUR_EC2_PUBLIC_IP:8040`, register an account, and try the full task workflow.
 
 ## 5. Update after a merge
 

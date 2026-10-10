@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import authRoutes from './routes/authRoutes.js';
 import taskRoutes from './routes/taskRoutes.js';
+import projectRoutes from './routes/projectRoutes.js';
 import { errorHandler, notFound } from './middleware/errors.js';
 
 const app = express();
@@ -17,6 +18,7 @@ if (process.env.NODE_ENV !== 'test') app.use(morgan('dev'));
 app.get('/api/health', (req, res) => res.status(200).json({ status: 'ok', service: 'ProdPilot API' }));
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
+app.use('/api/projects', projectRoutes);
 app.use(notFound);
 app.use(errorHandler);
 

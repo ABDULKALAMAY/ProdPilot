@@ -13,6 +13,7 @@ export default function AppLayout() {
         <nav aria-label="Main navigation">
           <NavLink to="/dashboard" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}><span>▦</span> Dashboard</NavLink>
           <NavLink to="/tasks" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}><span>☷</span> My tasks</NavLink>
+          <NavLink to="/projects" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}><span>◇</span> Projects</NavLink>
         </nav>
         <div className="sidebar-footer">
           <div className="user-summary"><span className="avatar">{initials || 'U'}</span><span><strong>{user?.name}</strong><small>{user?.email}</small></span></div>

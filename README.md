@@ -81,9 +81,13 @@ Docker packages the application and MongoDB into isolated containers. This means
    docker compose up --build
    ```
 
-3. Open [http://localhost:8080](http://localhost:8080). The API health endpoint is [http://localhost:5000/api/health](http://localhost:5000/api/health).
+3. Open [http://localhost:8040](http://localhost:8040). The API health endpoint is [http://localhost:5000/api/health](http://localhost:5000/api/health).
 
 4. Stop containers with `docker compose down`. MongoDB data remains in its named volume. To remove the database too (only if you intend to lose local data), run `docker compose down -v`.
+
+## Project planning and CPM
+
+The authenticated **Projects** page includes project activities, team roles/skills, manual assignment, reviewable deterministic auto-assignment, CSV/JSON team import, and a critical-path SVG network. See [Project planning documentation](docs/PROJECT_PLANNING.md) for usage, API endpoints, limits, and tested CPM examples.
 
 ## Quick start — local development
 

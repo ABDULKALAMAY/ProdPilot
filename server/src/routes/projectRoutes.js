@@ -1,0 +1,21 @@
+import { Router } from 'express';
+import { requireAuth } from '../middleware/auth.js';
+import { listProjects, createProject, loadProject, getProject, requireManager, changeProject, autoAssign, deleteProject } from '../controllers/projectController.js';
+
+const router = Router();
+router.use(requireAuth);
+router.get('/', listProjects);
+router.post('/', createProject);
+router.use('/:id', loadProject);
+router.get('/:id', getProject);
+router.put('/:id', requireManager, changeProject);
+router.delete('/:id', requireManager, deleteProject);
+router.post('/:id/auto-assign', requireManager, autoAssign);
+router.put('/:id/:action(assignments)', requireManager, changeProject);
+router.post('/:id/:action(activities|members)', requireManager, changeProject);
+router.put('/:id/:action(activities)', requireManager, changeProject);
+router.put('/:id/:action(activities)/:activityId', requireManager, changeProject);
+router.delete('/:id/:action(activities)/:activityId', requireManager, changeProject);
+router.put('/:id/:action(members)/:memberId', requireManager, changeProject);
+router.delete('/:id/:action(members)/:memberId', requireManager, changeProject);
+export default router;

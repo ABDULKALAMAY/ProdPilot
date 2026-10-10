@@ -24,7 +24,7 @@ services:
       NODE_ENV: production
       MONGO_URI: mongodb://mongo:27017/prodpilot
       JWT_SECRET: ${JWT_SECRET}
-      CLIENT_ORIGIN: http://localhost:8080
+      CLIENT_ORIGIN: http://localhost:8040
     depends_on:
       mongo:
         condition: service_healthy
@@ -42,7 +42,7 @@ services:
     depends_on:
       - server
     ports:
-      - "8080:80"
+      - "8040:80"
 
 volumes:
   mongo_data:
