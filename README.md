@@ -60,6 +60,20 @@ ProdPilot/
 
 ## Quick start — Docker (recommended)
 
+### Checklist for a fresh GitHub download
+
+Download and extract the repository, then open a terminal in the extracted folder containing `docker-compose.yml`.
+
+1. Start Docker Desktop with Linux containers enabled.
+2. Copy `.env.example` to `.env` and set a long random `JWT_SECRET`. In Windows PowerShell, run `Copy-Item .env.example .env`, then edit `.env`.
+3. Change `CLIENT_PORT`, `API_PORT`, and `MONGO_PORT` in `.env` if those ports are already occupied. For example, use `8041`, `5001`, and `27018` when another copy uses the defaults.
+4. Run `docker compose up -d --build`.
+5. Open the configured frontend port, such as `http://localhost:8040` or `http://localhost:8041`, and register an account.
+
+A fresh download has no existing accounts or showcase data. Create your own tasks and projects after registration.
+
+### Detailed setup
+
 Docker packages the application and MongoDB into isolated containers. This means every team member runs the same versions without manually installing Node or MongoDB.
 
 - An **image** is the reusable package of software instructions.
