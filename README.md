@@ -75,15 +75,20 @@ Docker packages the application and MongoDB into isolated containers. This means
 
    On Windows PowerShell, use `Copy-Item .env.example .env` instead.
 
-2. Build and start the three services:
+2. Make sure Docker Desktop is running (Linux containers). If another copy already uses the ports, change `CLIENT_PORT`, `API_PORT`, and `MONGO_PORT` in `.env`, for example to `8041`, `5001`, and `27018`. Each extracted folder has its own Compose project and database volume. Use `docker compose -p prodpilot-check` to give a second copy an explicit project name.
+
+3. Build and start the three services:
 
    ```bash
-   docker compose up --build
+   docker compose up -d --build
+   docker compose ps
    ```
 
-3. Open [http://localhost:8040](http://localhost:8040). The API health endpoint is [http://localhost:5000/api/health](http://localhost:5000/api/health).
+4. Open [http://localhost:8040](http://localhost:8040), or the `CLIENT_PORT` you chose. The API is also available through the frontend at `/api/health`. Nginx forwards `/api` requests to the server, so changing host ports does not require editing frontend code. A fresh download starts with an empty database: register an account, then create tasks and projects. Existing local demo accounts and data are not included in GitHub.
 
-4. Stop containers with `docker compose down`. MongoDB data remains in its named volume. To remove the database too (only if you intend to lose local data), run `docker compose down -v`.
+5. Stop containers with `docker compose down`. If you used `-p prodpilot-check` at startup, use the same option for later commands. MongoDB data remains in its named volume. To remove the database too (only if you intend to lose local data), run `docker compose down -v`.
+
+If startup fails, check `docker compose logs --tail=100 server client mongo`. A missing `JWT_SECRET` now gives a clear setup error before containers start. Port allocation errors mean another process already uses a configured host port.
 
 ## Project planning and CPM
 
@@ -128,6 +133,16 @@ pnpm test         # API smoke tests
 pnpm build        # production React build
 docker compose build
 ```
+
+To include the full authentication, tasks, and projects integration tests, start MongoDB and set `TEST_MONGO_URI` before `pnpm test`. In PowerShell:
+
+```powershell
+$env:TEST_MONGO_URI = 'mongodb://127.0.0.1:27017'
+pnpm test
+Remove-Item Env:TEST_MONGO_URI
+```
+
+Use your configured `MONGO_PORT` if different. Integration tests create and remove only their own uniquely named test database. Without this variable, the integration test is skipped; unit and smoke tests still run.
 
 ## REST API
 

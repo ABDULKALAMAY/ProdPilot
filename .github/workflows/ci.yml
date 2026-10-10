@@ -39,3 +39,5 @@ jobs:
 
       - name: Build Docker images
         run: docker compose build
+        env:
+          JWT_SECRET: ci-build-only-not-a-deployment-secret
